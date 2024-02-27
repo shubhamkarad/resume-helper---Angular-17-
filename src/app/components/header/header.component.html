@@ -1,0 +1,58 @@
+<div class="max-w-screen-xl mx-auto px-5">
+  <header class="flex flex-col lg:flex-row justify-between items-center my-5">
+    <div class="flex w-full lg:w-auto items-center justify-between">
+      <a routerLink="/" class="text-lg"
+        ><span class="font-bold text-slate-800">Resume</span
+        ><span class="text-slate-500">Checker</span>
+      </a>
+      <div class="block lg:hidden">
+        <button class="text-gray-800">
+          <svg
+            fill="currentColor"
+            class="w-4 h-4"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>Menu</title>
+            <path
+              x-cloak
+              x-show="open"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M18.278 16.864a1 1 0 01-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 01-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 011.414-1.414l4.829 4.828 4.828-4.828a1 1 0 111.414 1.414l-4.828 4.829 4.828 4.828z"
+            ></path>
+            <path
+              x-show="!open"
+              fill-rule="evenodd"
+              d="M4 5h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <nav class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
+      <ul class="flex flex-col lg:flex-row lg:gap-3">
+        <li>
+          <a routerLink="/about-us" class="p-2 rounded-lg hover:bg-slate-200"
+            >About Us</a
+          >
+        </li>
+        <li>
+          <a routerLink="/resume-tips" class="p-2 rounded-lg hover:bg-slate-200"
+            >Resume Tips</a
+          >
+        </li>
+      </ul>
+      <!-- <div class="lg:hidden flex items-center mt-3 gap-4">
+    <Link href="#"size="md">Log in</Link>
+    <Link href="#" size="md" block>Sign up</Link>
+  </div> -->
+    </nav>
+    <!-- <div>
+  <div class="hidden lg:flex items-center gap-4">
+    <a href="#">Log in</a>
+    <Link href="#" size="md">Sign up</Link>
+  </div>
+</div> -->
+  </header>
+</div>

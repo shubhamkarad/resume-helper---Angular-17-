@@ -1,0 +1,199 @@
+<app-header></app-header>
+<!-- @if (isLoading) { -->
+<app-loader></app-loader>
+<!-- } -->
+<div class="max-w-screen-xl mx-auto px-5">
+  <main class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-8">
+    <div class="py-6 md:order-1 hidden md:block">
+      <img
+        src="https://cdn.enhancv.com/images/1920/i/L19uZXh0L3N0YXRpYy9pbWFnZXMvcmVzdW1lcy0yNjUwYmU4MzQ2NjdjMTZlNDI5YmMyM2QyZTQzMzNmMC53ZWJw..webp"
+        alt="Astronaut in the air"
+        loading="eager"
+        format="avif"
+      />
+    </div>
+    <div class="mt-10">
+      <h1 class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight">
+        Is your
+        <span
+          class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500"
+          >resume </span
+        >strong enough?
+      </h1>
+
+      <p class="text-lg mt-4 text-slate-600 max-w-xl">
+        Welcome to our Resume Checker – your trusted partner in crafting a
+        winning professional profile! 🚀
+      </p>
+      <form [formGroup]="resumeForm" (ngSubmit)="onSubmit()" #formDir="ngForm">
+        <div class="flex items-center justify-center w-80 mt-6">
+          <label
+            for="dropzone-file"
+            class="flex flex-col items-center justify-center w-full h-30 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer dark:hover:bg-gray-100"
+          >
+            <div
+              class="flex flex-col items-center justify-center pt-5 pb-6"
+              (dragover)="onDragOver($event)"
+              (dragleave)="onDragLeave($event)"
+              (drop)="onDrop($event)"
+            >
+              <svg
+                class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 16"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-opacity="0.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  stroke-dasharray="4,2"
+                  d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                />
+              </svg>
+
+              <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                Click to <span class="font-semibold">upload</span>
+              </p>
+              <p class="text-xs text-gray-500 dark:text-gray-400">
+                PDF (MAX SIZE: 2.5mb)
+              </p>
+            </div>
+            <input
+              id="dropzone-file"
+              formControlName="pdfFile"
+              type="file"
+              accept=".pdf"
+              (change)="onFileSelected($event)"
+              class="hidden"
+            />
+          </label>
+        </div>
+        @if (pdfFileName) {
+        <div class="flex items-center">
+          <div
+            class="border-dashed rounded-lg mt-2 px-2 py-2 text-blue-500 border-2 border-gray-300 w-80 truncate"
+          >
+            {{ pdfFileName }}
+          </div>
+          <div
+            class="hover:cursor-pointer text-red-500 ml-3 inline-flex mt-1"
+            (click)="removeSelectedFile()"
+          >
+            x
+          </div>
+        </div>
+        }
+        <h3 class="mt-6">
+          Type in the keywords you're looking for in the resume.
+        </h3>
+        <div class="flex flex-col mt-6">
+          <label for="chat" class="sr-only">Your message</label>
+          <div class="flex items-center">
+            <textarea
+              id="chat"
+              formControlName="description"
+              rows="1"
+              class="h-20 w-80 block p-2.5 w-full text-sm text-gray-900 bg-gray-100 rounded-lg border border-gray-300"
+              placeholder="Job description..."
+            ></textarea>
+          </div>
+          @if (validate['description'].invalid && (validate['description'].dirty
+          || validate['description'].touched)) {
+          <div class="mt-2 text-red-500">
+            @if (validate['description'].errors?.['required']) {
+            <div>Description is required.</div>
+            }
+          </div>
+          }
+          <h3 class="text-sm mt-5">
+            Please click the button below to access detailed information from
+            the uploaded resume and engage in further discussion through our
+            chat.
+          </h3>
+          <button
+            type="submit"
+            [disabled]="!resumeForm.valid && fileLimit"
+            class="mt-5 w-60 inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500"
+          >
+            <svg
+              class="w-5 h-5 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"
+              ></path>
+            </svg>
+            <span class="relative">Generate Response</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+  <div class="mt-30 md:mt-0 flex justify-center items-center flex-col">
+    <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
+      Everything you need to know
+    </h2>
+    <p class="text-lg mt-4 text-slate-600">
+      Are you uncertain about whether your resume aligns perfectly with the job
+      description?
+    </p>
+  </div>
+  <div class="grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-16">
+    @for (item of data; track item.title) {
+
+    <div class="flex gap-4 items-start">
+      <!-- <div class="mt-1 bg-black rounded-full p-2 w-8 h-8 shrink-0"> -->
+      <!-- <Icon class="text-white" name="{item.icon}" /> -->
+      <!-- </div> -->
+      <div>
+        <h3 class="font-semibold text-lg">{{ item.title }}</h3>
+        <p class="text-slate-500 mt-2 leading-relaxed">
+          {{ item.description }}
+        </p>
+      </div>
+    </div>
+    }
+  </div>
+  <section
+    class="container mx-auto mt-8 mb-12 flex items-center justify-between bg-sky-50 rounded-lg"
+  >
+    <!-- Points with Tick Icons -->
+    <div class="w-1/2 pr-6">
+      <h2 class="text-lg font-bold mb-5">
+        Make sure your resume stands out for the right reasons!
+      </h2>
+      <div class="flex items-center mb-4">
+        <i class="fa fa-check text-green-500 mr-2"></i>
+        <p>Eliminate embarrassing mistakes and typos</p>
+      </div>
+      <div class="flex items-center mb-4">
+        <i class="fa fa-check text-green-500 mr-2"></i>
+        <p>Sell yourself effectively by strengthening your content</p>
+      </div>
+      <div class="flex items-center">
+        <i class="fa fa-check text-green-500 mr-2"></i>
+        <p>Improve your design and create a visually appealing resume</p>
+      </div>
+    </div>
+
+    <!-- Image Section -->
+    <div class="w-1/2">
+      <img
+        src="https://cdn.enhancv.com/images/1920/i/L19uZXh0L3N0YXRpYy9pbWFnZXMvcmVzdW1lLWNoZWNrZXItNGI2MDdkNzUwMTdmZjJkODJiMzI5NDM5ODg0MjJmYTEud2VicA~~..webp"
+        alt="Resume Illustration"
+        class="w-full h-auto"
+      />
+    </div>
+  </section>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,26 @@
+<div class="p-2 bg-white rounded-xl">
+  <div
+    class="border-dashed border-2 rounded-xl cursor-pointer bg-gray-50 py-8 flex justify-center items-center flex-col"
+  >
+    <i class="fa fa-inbox w-10 h-10 text-blue-500" aria-hidden="true"></i>
+    <form>
+      <label class="custom-file-upload">
+        <input
+          type="file"
+          formControlName="image"
+          accept=".pdf"
+          style="display: none"
+          (change)="onPdfSelected($event)"
+          required
+        />
+        <span class="mt-2 text-sm text-slate-400"
+          >Drag file or click to choose</span
+        >
+      </label>
+    </form>
+  </div>
+</div>
+@if (selectedPdf) {
+<ngx-extended-pdf-viewer [src]="pdfViewer"></ngx-extended-pdf-viewer>
+
+}

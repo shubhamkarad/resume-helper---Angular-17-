@@ -1,0 +1,20 @@
+@if (isLoader) {
+<div class="fixed top-0 left-0 w-full h-full bg-black opacity-50"></div>
+
+<div
+  class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center"
+>
+  <div
+    class="inline-block h-10 w-10 animate-spin rounded-full border-4 border-solid border-current border-r-transparent text-primary"
+  >
+    <span
+      class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+      >Loading...</span
+    >
+  </div>
+  <div class="mt-3 text-white" [@fadeInOut]="loadingMessage">
+    {{ loadingMessage }}
+  </div>
+</div>
+
+}

@@ -1,0 +1,107 @@
+<div class="h-screen flex flex-col bg-gray-100">
+  <div class="bg-white py-2 px-4 top-0 z-10">
+    <h3 class="text-xl font-bold">Type here to know more</h3>
+  </div>
+  <!-- app.component.html -->
+  <!-- <app-progress [progressValue]="10" [showCloseButton]="true"></app-progress> -->
+
+  <div
+    class="flex-grow max-h-screen overflow-y-scroll py-4 px-2"
+    id="message-container"
+  >
+    @for (message of messages; track message.type) {
+    <div className="flex flex-col gap-2 px-4">
+      <div
+        [ngClass]="{
+          user: message.type === 'user',
+          assistant: message.type === 'bot'
+        }"
+      >
+        <img
+          src="assets/bot.png"
+          [ngClass]="{
+            'object-cover': true,
+            'h-8': true,
+            'w-8': true,
+            'rounded-full': true,
+            'mt-3': true,
+            hidden: message.type === 'user',
+            'mr-2': true
+          }"
+          alt=""
+        />
+        <div
+          class="mt-2 mb-2"
+          [ngClass]="{
+            'px-3': true,
+            'text-sm': true,
+            'py-1': true,
+            'shadow-md': true,
+            'ring-1': true,
+            'ring-gray-200': true,
+            'rounded-bl-3xl': message.type === 'user',
+            'rounded-tl-3xl': message.type === 'user',
+            'rounded-tr-xl': message.type === 'user',
+            'rounded-br-3xl': message.type === 'bot',
+            'rounded-tr-3xl': message.type === 'bot',
+            'rounded-tl-xl': message.type === 'bot',
+            'bg-blue-600': message.type === 'user',
+            'text-white': message.type === 'user',
+            'bg-gray-100': message.type === 'bot',
+            'text-gray-800': message.type === 'bot'
+          }"
+        >
+          <p class="mt-1 mb-1" [innerHTML]="message.text"></p>
+        </div>
+        <img
+          src="assets/user.png"
+          [ngClass]="{
+            'object-cover': true,
+            'h-8': true,
+            'w-8': true,
+            'rounded-full': true,
+            'mt-3': true,
+            hidden: message.type === 'bot',
+            'ml-2': true
+          }"
+          alt=""
+        />
+      </div>
+    </div>
+    }
+  </div>
+
+  <form
+    class="bg-white py-4 px-2 sticky bottom-0 z-10"
+    [formGroup]="chatForm"
+    (ngSubmit)="onSubmit()"
+    #formDir="ngForm"
+  >
+    <div class="flex items-center">
+      <input
+        value=""
+        formControlName="query"
+        placeholder="Ask any question in English or Hindi"
+        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+      />
+      <button class="bg-blue-600 px-3 py-2 ml-2 rounded-md" type="submit">
+        @if (isLoading) {
+        <div
+          class="top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-4 relative"
+        >
+          <div
+            class="inline-block h-4 w-4 animate-spin rounded-full border-4 border-solid border-current border-r-transparent text-white"
+          >
+            <span
+              class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+              >Loading...</span
+            >
+          </div>
+        </div>
+        } @else {
+        <i class="fa fa-paper-plane h-4 w-4 text-white"></i>
+        }
+      </button>
+    </div>
+  </form>
+</div>

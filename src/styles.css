@@ -1,0 +1,145 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+.toast-success {
+  background-color: #54c554;
+  color: white;
+  width: 500px; /* Adjust the width as needed */
+}
+.toast-error {
+  background-color: #971a1a !important;
+  color: white;
+  width: 500px; /* Adjust the width as needed */
+}
+
+.custom-toast .toast-message::before {
+  content: "\2713"; /* Unicode character for a checkmark */
+  font-size: 24px;
+  position: absolute;
+  left: 10px;
+  top: 30px;
+}
+.toast-error .toast-message::before {
+  /* content: "\26A0";  */
+  font-size: 24px;
+  position: absolute;
+  left: 10px;
+  top: 30px;
+}
+
+.custom-toast .toast-message {
+  width: 100%; /* Make sure the message fits within the toast */
+}
+.toast-top-center {
+  position: absolute;
+  top: 20px;
+  margin: auto;
+  left: 35%;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+.custom-toast .toast-close-button {
+  /* Customize the close button here */
+  background-color: transparent; /* Change the close button background color */
+  color: white; /* Change the close button text color */
+  border: 1px solid white; /* Add a border around the close button */
+  font-size: 16px; /* Adjust the font size of the close button */
+  padding: 4px 8px; /* Adjust padding for the close button */
+  border-radius: 5px; /* Make the close button circular */
+}
+
+.custom-toast .toast-close-button:hover {
+  background-color: darkred; /* Change the close button background color on hover */
+}
+.toast-success {
+  padding: 20px 20px 20px 35px;
+}
+.toast-error {
+  padding: 20px 20px 20px 35px;
+}
+.custom-toast-title {
+  font-size: 24px; /* Adjust the font size as needed */
+  font-weight: bold;
+}
